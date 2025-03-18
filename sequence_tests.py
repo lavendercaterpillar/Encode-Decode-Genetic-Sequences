@@ -12,13 +12,13 @@ ENCODED_NEITHER_BASE = "C3A5G4C5G4A4C4G5A3C3G4A4C5"
 
 def tests():
     part_one_tests()
-    # part_two_tests()
+    part_two_tests()
     print("All tests passed!\n")
 
 def part_one_tests():
     dna_tests()
-    # rna_tests()
-    # uncategorized_tests()
+    rna_tests()
+    uncategorized_tests()
 
 def dna_tests():
     result = encode_strand(DNA)
@@ -48,22 +48,15 @@ def uncategorized_tests():
     result = categorize_strand(STRAND_NEITHER_BASE)
     assert result == -1
 
-# def part_two_tests():
-#     result = categorize_encoded_strand(DNA_ENCODED)
-#     assert result == 0
+def part_two_tests():
+    result = categorize_encoded_strand(DNA_ENCODED)
+    assert result == 0
 
-#     result = categorize_encoded_strand(RNA_ENCODED)
-#     assert result == 1
+    result = categorize_encoded_strand(RNA_ENCODED)
+    assert result == 1
 
-#     result = categorize_encoded_strand(ENCODED_BOTH_BASES)
-#     assert result == -1
+    result = categorize_encoded_strand(ENCODED_BOTH_BASES)
+    assert result == -1, f"{result}"
 
-#     result = categorize_encoded_strand(ENCODED_NEITHER_BASE)
-#     assert result == -1
-
-# watch items for part 1 dna_tests debugging:
-
-# len(strand)
-# strand[index - 1] == strand[index]
-# strand[index]
-# strand[index - 1]
+    result = categorize_encoded_strand(ENCODED_NEITHER_BASE)
+    assert result == -1

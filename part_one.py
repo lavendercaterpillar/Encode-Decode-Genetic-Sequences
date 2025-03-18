@@ -98,3 +98,10 @@ def decode_strand(encoding):
         strand.extend(next_base)
 
     return "".join(strand)
+
+# watch items for part 1 dna_tests debugging:
+
+# len(strand)
+# strand[index - 1] == strand[index]
+# strand[index]
+# strand[index - 1]

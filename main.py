@@ -1,8 +1,8 @@
 # Part 1 imports
-from part_one import driver
+# from part_one import driver
 
 # Part 2 imports
-# from part_two import driver
+from part_two import driver
 
 if __name__ == "__main__":
     user_input = ""
