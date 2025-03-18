@@ -11,13 +11,17 @@ def driver():
     ]
 
     categorized_sequences = {}
-    categorized_sequences["undetermined"] = [] # strands that can't be determined
-    categorized_sequences["dna"] = [] # dna strands
-    categorized_sequences["rna"] = [] # rna strands
+    # categorized_sequences["undetermined"] = [] # Error! strands that can't be determined
+    # categorized_sequences["dna"] = [] # dna strands
+    # categorized_sequences["rna"] = [] # rna strands
+    categorized_sequences[-1] = [] # Error! strands that can't be determined
+    categorized_sequences[0] = [] # dna strands
+    categorized_sequences[1] = [] # rna strands
 
     for sequence in all_sequences:
         category = categorize_strand(sequence)
-        categorized_sequences[category].append(sequence)
+        # categorized_sequences[category].append(sequence) # Error! categorized_sequences is a dictionary!
+        categorized_sequences[category] = sequence
 
     print("-------------------------")
     print("Encoding sequences for storage...")
@@ -45,7 +49,7 @@ def categorize_strand(strand):
     is_t_present = False
     is_u_present = False
 
-    for base in strand:
+    for base in strand:  # checks if T or U present in the sequence
         if base == "T":
             is_t_present = True
 
@@ -70,9 +74,14 @@ def encode_strand(strand):
         if strand[index - 1] == strand[index]:
             count += 1
         else:
-            new_entry = strand[index - 1] + count
+            new_entry = strand[index - 1] + str(count) # TypeError
             encoding.append(new_entry)
             count = 1
+        
+    # Append the last character and its count
+    new_entry = strand[ - 1] + str(count) 
+    encoding.append(new_entry)
+    # encoding.append(strand[-1] + str(count))
 
     return "".join(encoding)
 
@@ -84,7 +93,7 @@ def decode_strand(encoding):
 
     for index in range(0, len(encoding) - 1, 2):
         letter = encoding[index]
-        count = int(encoding[index + 1])
+        count = int(encoding[index + 1])  # ValueError: invalid literal for int() with base 10: 'G'
         next_base = [letter] * count
         strand.extend(next_base)
 
